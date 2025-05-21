@@ -5,7 +5,7 @@ from os.path import expanduser, join
 
 from ._version import __version__
 from hdx.data.user import User
-from hdx.facades.infer_arguments import facade
+from hdx.facades.simple import facade
 from hdx.utilities.easy_logging import setup_logging
 
 setup_logging()
@@ -15,17 +15,14 @@ lookup = "hdx-scraper-tokentest"
 updated_by_script = "HDX Scraper: Token Test"
 
 
-def main(
-    save: bool = False,
-) -> None:
+def main() -> None:
     """Test token
 
     Returns:
         None
     """
     logger.info(f"##### {lookup} version {__version__} ####")
-    if not User.check_current_user_organization_access("hdx", "create_dataset"):
-        raise PermissionError("API Token does not give access to HDX organisation!")
+    User.check_current_user_write_access("hdx")
     logger.info("HDX Scraper token test completed!")
 
 
