@@ -3,10 +3,11 @@
 import logging
 from os.path import expanduser, join
 
-from ._version import __version__
 from hdx.data.user import User
 from hdx.facades.simple import facade
 from hdx.utilities.easy_logging import setup_logging
+
+from ._version import __version__
 
 setup_logging()
 logger = logging.getLogger(__name__)
